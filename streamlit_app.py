@@ -31,7 +31,7 @@ PRODUCTS = [
 
 # Onboarding New Vendor Form
 with st.form(key="vendor_form"):
-    company_name = st.text_input(label="Company Name*")
+    company_name = st.text_input(label="E-mail do destinatário*")
     business_type = st.selectbox("Business Type*", options=BUSINESS_TYPES, index=None)
     products = st.multiselect("Products Offered", options=PRODUCTS)
     years_in_business = st.slider("Years in Business", 0, 50, 5)
@@ -50,7 +50,7 @@ with st.form(key="vendor_form"):
             st.warning("Ensure all mandatory fields are filled.")
             st.stop()
         elif existing_data["CompanyName"].str.contains(company_name).any():
-            st.warning("A vendor with this company name already exists.")
+            st.warning("A vendor with this E-mail do destinatário already exists.")
             st.stop()
         else:
             # Create a new row of vendor data
