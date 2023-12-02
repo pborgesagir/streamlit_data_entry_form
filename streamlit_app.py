@@ -38,11 +38,6 @@ with st.form(key="vendor_form"):
     onboarding_date = st.date_input(label="Onboarding Date")
     additional_info = st.text_area(label="Additional Notes")
 
-    # Get indices of selected products and sort them
-    selected_indices = [PRODUCTS.index(product) for product in products]
-    sorted_products = [product for _, product in sorted(zip(selected_indices, products))]
-
-
     # Mark mandatory fields
     st.markdown("**required*")
 
@@ -60,17 +55,17 @@ with st.form(key="vendor_form"):
         else:
             # Create a new row of vendor data
             vendor_data = pd.DataFrame(
-        [
-            {
-                "CompanyName": company_name,
-                "BusinessType": business_type,
-                "Products": ", ".join(sorted_products),
-                "YearsInBusiness": years_in_business,
-                "OnboardingDate": onboarding_date.strftime("%Y-%m-%d"),
-                "AdditionalInfo": additional_info,
-            }
-        ]
-        )
+                [
+                    {
+                        "CompanyName": company_name,
+                        "BusinessType": business_type,
+                        "Products": ", ".join(products),
+                        "YearsInBusiness": years_in_business,
+                        "OnboardingDate": onboarding_date.strftime("%Y-%m-%d"),
+                        "AdditionalInfo": additional_info,
+                    }
+                ]
+            )
 
             # Add the new vendor data to the existing data
             updated_df = pd.concat([existing_data, vendor_data], ignore_index=True)
