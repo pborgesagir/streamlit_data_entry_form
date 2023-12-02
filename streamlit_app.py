@@ -14,7 +14,7 @@ existing_data = existing_data.dropna(how="all")
 
 
 
-PRODUCTS = [
+unidade = [
     "AGIR",
     "CRER",
     "HDS",
@@ -28,7 +28,7 @@ PRODUCTS = [
 with st.form(key="vendor_form"):
     company_name = st.text_input(label="E-mail do destinatário*")
     business_type = st.text_input(label="E-mail do remetente*")
-    products = st.multiselect("Products Offered", options=PRODUCTS)
+    unidade = st.multiselect("Unidade a ser cadastrada:*", options=unidade)
     years_in_business = st.slider("Years in Business", 0, 50, 5)
     onboarding_date = st.date_input(label="Onboarding Date")
     additional_info = st.text_area(label="Additional Notes")
@@ -41,7 +41,7 @@ with st.form(key="vendor_form"):
     # If the submit button is pressed
     if submit_button:
         # Check if all mandatory fields are filled
-        if not company_name or not business_type:
+        if not company_name or not business_type or not unidade:
             st.warning("Ensure all mandatory fields are filled.")
             st.stop()
         elif existing_data["destinatario"].str.contains(company_name).any():
@@ -54,7 +54,7 @@ with st.form(key="vendor_form"):
                     {
                         "destinatario": company_name,
                         "remetente": business_type,
-                        "Products": ", ".join(products),
+                        "unidade": ", ".join(unidade),
                         "YearsInBusiness": years_in_business,
                         "OnboardingDate": onboarding_date.strftime("%Y-%m-%d"),
                         "AdditionalInfo": additional_info,
