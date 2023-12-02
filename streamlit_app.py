@@ -25,7 +25,7 @@ PRODUCTS = [
 # Onboarding New Vendor Form
 with st.form(key="vendor_form"):
     company_name = st.text_input(label="E-mail do destinatário*")
-    business_type = st.text_input("E-mail do remetente*")
+    business_type = st.text_input(label = "E-mail do remetente*")
     products = st.multiselect("Products Offered", options=PRODUCTS)
     years_in_business = st.slider("Years in Business", 0, 50, 5)
     onboarding_date = st.date_input(label="Onboarding Date")
