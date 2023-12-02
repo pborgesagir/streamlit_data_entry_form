@@ -13,14 +13,7 @@ existing_data = conn.read(worksheet="fornecedores", usecols = list(range(6)), tt
 existing_data = existing_data.dropna(how="all")
 
 
-# List of Business Types and Products
-BUSINESS_TYPES = [
-    "Manufacturer",
-    "Distributor",
-    "Wholesaler",
-    "Retailer",
-    "Service Provider",
-]
+
 PRODUCTS = [
     "Electronics",
     "Apparel",
