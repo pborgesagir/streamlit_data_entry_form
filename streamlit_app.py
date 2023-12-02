@@ -63,4 +63,4 @@ with st.form(key="vendor_form"):
             # Update Google Sheets with the new vendor data
             conn.update(worksheet="fornecedores", data=updated_df)
 
-            st.success("Informações para cadastro enviadas ao fornecedor!")
+            st.success("Informações para cadastro enviadas com sucesso ao fornecedor!")
