@@ -57,7 +57,7 @@ with st.form(key="vendor_form"):
             vendor_data = pd.DataFrame(
                 [
                     {
-                        "CompanyName": company_name,
+                        "E-mail do destinatário": company_name,
                         "BusinessType": business_type,
                         "Products": ", ".join(products),
                         "YearsInBusiness": years_in_business,
