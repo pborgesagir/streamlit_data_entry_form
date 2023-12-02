@@ -26,25 +26,23 @@ unidade = [
 
 # Onboarding New Vendor Form
 with st.form(key="vendor_form"):
-    company_name = st.text_input(label="E-mail do destinatário*")
+    destinatario_name = st.text_input(label="E-mail do destinatário*")
     business_type = st.text_input(label="E-mail do remetente*")
     unidade = st.multiselect("Unidade a ser cadastrada:*", options=unidade)
-    years_in_business = st.slider("Years in Business", 0, 50, 5)
-    onboarding_date = st.date_input(label="Onboarding Date")
-    additional_info = st.text_area(label="Additional Notes")
+    
 
     # Mark mandatory fields
     st.markdown("**required*")
 
-    submit_button = st.form_submit_button(label="Submit Vendor Details")
+    submit_button = st.form_submit_button(label="Enviar cadastro para o fornecedor")
 
     # If the submit button is pressed
     if submit_button:
         # Check if all mandatory fields are filled
-        if not company_name or not business_type or not unidade:
+        if not destinatario_name or not business_type or not unidade:
             st.warning("Não enviado. Algum dos campos obrigatórios foi preenchido.")
             st.stop()
-        elif existing_data["destinatario"].str.contains(company_name).any():
+        elif existing_data["destinatario"].str.contains(destinatario_name).any():
             st.warning("A vendor with this company name already exists.")
             st.stop()
         else:
@@ -52,12 +50,9 @@ with st.form(key="vendor_form"):
             vendor_data = pd.DataFrame(
                 [
                     {
-                        "destinatario": company_name,
+                        "destinatario": destinatario_name,
                         "remetente": business_type,
                         "unidade": ", ".join(unidade),
-                        "YearsInBusiness": years_in_business,
-                        "OnboardingDate": onboarding_date.strftime("%Y-%m-%d"),
-                        "AdditionalInfo": additional_info,
                     }
                 ]
             )
@@ -68,4 +63,4 @@ with st.form(key="vendor_form"):
             # Update Google Sheets with the new vendor data
             conn.update(worksheet="fornecedores", data=updated_df)
 
-            st.success("Vendor details successfully submitted!")
+            st.success("Informações para cadastro enviadas ao fornecedor!")
