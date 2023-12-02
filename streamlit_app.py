@@ -49,7 +49,7 @@ with st.form(key="vendor_form"):
         if not company_name or not business_type:
             st.warning("Ensure all mandatory fields are filled.")
             st.stop()
-        elif existing_data["CompanyName"].str.contains(company_name).any():
+        elif existing_data["destinatario"].str.contains(company_name).any():
             st.warning("A vendor with this company name already exists.")
             st.stop()
         else:
@@ -57,7 +57,7 @@ with st.form(key="vendor_form"):
             vendor_data = pd.DataFrame(
                 [
                     {
-                        "CompanyName": company_name,
+                        "destinatario": company_name,
                         "BusinessType": business_type,
                         "Products": ", ".join(products),
                         "YearsInBusiness": years_in_business,
