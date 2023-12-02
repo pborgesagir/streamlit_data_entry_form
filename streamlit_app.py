@@ -42,7 +42,7 @@ with st.form(key="vendor_form"):
     if submit_button:
         # Check if all mandatory fields are filled
         if not company_name or not business_type or not unidade:
-            st.warning("Revise se todos so campos obrigatórios foram preenchidos.")
+            st.warning("Não enviado. Algum dos campos obrigatórios foi preenchido.")
             st.stop()
         elif existing_data["destinatario"].str.contains(company_name).any():
             st.warning("A vendor with this company name already exists.")
