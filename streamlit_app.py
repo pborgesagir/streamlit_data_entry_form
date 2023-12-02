@@ -32,7 +32,7 @@ with st.form(key="vendor_form"):
     
 
     # Mark mandatory fields
-    st.markdown("**required*")
+    st.markdown("**Campo obrigatório*")
 
     submit_button = st.form_submit_button(label="Enviar cadastro para o fornecedor")
 
