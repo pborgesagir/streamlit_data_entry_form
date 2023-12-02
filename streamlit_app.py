@@ -9,7 +9,7 @@ st.markdown("Insira abaixo os dados para envio:")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 
-existing_data = conn.read(worksheet="fornecedores", usecols = list(range(6)), ttl=5)
+existing_data = conn.read(worksheet="fornecedores", usecols = list(range(3)), ttl=2)
 existing_data = existing_data.dropna(how="all")
 
 
