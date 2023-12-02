@@ -31,7 +31,7 @@ PRODUCTS = [
 
 # Onboarding New Vendor Form
 with st.form(key="vendor_form"):
-    company_name = st.text_input(label="E-mail do destinatário*")
+    company_name = st.text_input(label="Company Name*")
     business_type = st.selectbox("Business Type*", options=BUSINESS_TYPES, index=None)
     products = st.multiselect("Products Offered", options=PRODUCTS)
     years_in_business = st.slider("Years in Business", 0, 50, 5)
@@ -50,14 +50,14 @@ with st.form(key="vendor_form"):
             st.warning("Ensure all mandatory fields are filled.")
             st.stop()
         elif existing_data["CompanyName"].str.contains(company_name).any():
-            st.warning("A vendor with this E-mail do destinatário already exists.")
+            st.warning("A vendor with this company name already exists.")
             st.stop()
         else:
             # Create a new row of vendor data
             vendor_data = pd.DataFrame(
                 [
                     {
-                        "E-mail do destinatário": company_name,
+                        "CompanyName": company_name,
                         "BusinessType": business_type,
                         "Products": ", ".join(products),
                         "YearsInBusiness": years_in_business,
@@ -71,6 +71,6 @@ with st.form(key="vendor_form"):
             updated_df = pd.concat([existing_data, vendor_data], ignore_index=True)
 
             # Update Google Sheets with the new vendor data
-            conn.update(worksheet="fornecedores", data=updated_df)
+            conn.update(worksheet="Vendors", data=updated_df)
 
             st.success("Vendor details successfully submitted!")
