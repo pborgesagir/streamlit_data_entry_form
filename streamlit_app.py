@@ -15,11 +15,13 @@ existing_data = existing_data.dropna(how="all")
 
 
 PRODUCTS = [
-    "Electronics",
-    "Apparel",
-    "Groceries",
-    "Software",
-    "Other",
+    "AGIR",
+    "CRER",
+    "HDS",
+    "HUGOL",
+    "CED",
+    "TEIA",
+    "HECAD"
 ]
 
 # Onboarding New Vendor Form
