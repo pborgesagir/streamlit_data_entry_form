@@ -42,9 +42,7 @@ with st.form(key="vendor_form"):
         if not destinatario_name or not business_type or not unidade:
             st.warning("Não enviado. Algum dos campos obrigatórios foi preenchido.")
             st.stop()
-        elif existing_data["destinatario"].str.contains(destinatario_name).any():
-            st.warning("A vendor with this company name already exists.")
-            st.stop()
+       
         else:
             # Create a new row of vendor data
             vendor_data = pd.DataFrame(
