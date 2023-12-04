@@ -3,7 +3,7 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 
-st.title("Envio de Cadastro da AGIR para fornecedores")
+st.title("Envio de Cadastro da AGIR para fornecedores 📤")
 st.markdown("Insira abaixo os dados para envio:")
 
 conn = st.connection("gsheets", type=GSheetsConnection)
